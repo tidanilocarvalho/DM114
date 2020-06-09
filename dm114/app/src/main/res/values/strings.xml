@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">DM114</string>
+
     <string name="sign_out">Sign out</string>
-    <string name="registration_id">RegistrationId</string>
+
     <string name="user_name">User Name</string>
+    <string name="order_id">Order Id</string>
+    <string name="status">Status</string>
+    <string name="product_code">Product Code</string>
 </resources>
