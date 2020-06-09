@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/fragmentOrderDetailInfo">
+
+    <action
+        android:id="@+id/action_showOrderDetailInfo"
+        app:launchSingleTop="true"
+        app:destination="@id/fragmentOrderDetailInfo" >
+        <argument
+            app:nullable="true"
+            android:name="orderDetailInfo"
+            app:argType="string"/>
+    </action>
+
+    <fragment
+        android:id="@+id/fragmentOrderDetailInfo"
+        android:name="br.com.danilo.projectdm114.order.OrderDetailInfoFragment"
+        android:label="fragment_order_detail_list"
+        tools:layout="@layout/fragment_order_detail_info" >
+    </fragment>
+</navigation>
