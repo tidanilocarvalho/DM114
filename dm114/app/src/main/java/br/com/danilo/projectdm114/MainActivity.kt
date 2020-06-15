@@ -86,6 +86,11 @@ class MainActivity : AppCompatActivity() {
     
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.nav_order_detail_list -> {
+                //TODO: implement
+                return true
+            }
+
             R.id.nav_sign_out -> {
                 AuthUI.getInstance()
                     .signOut(this)
