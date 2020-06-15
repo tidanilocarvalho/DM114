@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import br.com.danilo.projectdm114.databinding.FragmentOrderDetailInfoBinding
+import br.com.danilo.projectdm114.persistence.Order
+import br.com.danilo.projectdm114.persistence.OrderRepository
 import com.google.firebase.iid.FirebaseInstanceId
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
+import java.text.SimpleDateFormat
 
 private const val TAG = "OrderDetailInfoFragment"
 

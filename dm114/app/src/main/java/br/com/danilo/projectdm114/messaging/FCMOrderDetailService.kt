@@ -10,8 +10,13 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import br.com.danilo.projectdm114.R
 import br.com.danilo.projectdm114.MainActivity
+import br.com.danilo.projectdm114.order.OrderDetail
+import br.com.danilo.projectdm114.persistence.Order
+import br.com.danilo.projectdm114.persistence.OrderRepository
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
 
 private const val TAG = "FCMOrderDetailService"
 
@@ -30,6 +35,15 @@ class FCMOrderDetailService: FirebaseMessagingService() {
             Log.d(TAG, "Payload: " + remoteMessage.data)
 
             if (remoteMessage.data.containsKey(ORDER_DETAIL_MESSAGING_KEY)) {
+                val moshi = Moshi.Builder().build()
+                val jsonAdapter: JsonAdapter<OrderDetail> = moshi.adapter<OrderDetail>(OrderDetail::class.java)
+                var orderDetail = jsonAdapter.fromJson(remoteMessage.data.get(ORDER_DETAIL_MESSAGING_KEY)!!)
+                val order = Order(
+                    status = orderDetail?.status,
+                    orderId = orderDetail?.orderId,
+                    productCode = orderDetail?.productCode,
+                    date = System.currentTimeMillis())
+                OrderRepository.saveOrder(order)
                 sendOrderDetailNotification(remoteMessage.data.get(ORDER_DETAIL_MESSAGING_KEY)!!)
             }
         }

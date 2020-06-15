@@ -83,10 +83,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    /**
-     * A function to handle the menu events
-     */
+    
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.nav_sign_out -> {
@@ -102,7 +99,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onNewIntent(intent: Intent) {
-        if (intent.hasExtra("product")) {
+        if (intent.hasExtra("orderDetail")) {
             showOrderDetailInfo(intent.getStringExtra(ORDER_DETAIL_MESSAGING_KEY)!!)
         }
         super.onNewIntent(intent)
