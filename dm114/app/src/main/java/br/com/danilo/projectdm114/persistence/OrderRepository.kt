@@ -61,7 +61,7 @@ object OrderRepository {
                     val orders = ArrayList<Order>()
                     querySnapshot.forEach {
                         val order = it.toObject<Order>()
-                        order.id = it.id
+                        //order.id = it.id
                         orders.add(order)
                     }
                     liveOrders.postValue(orders)
@@ -69,6 +69,8 @@ object OrderRepository {
                     Log.d(TAG, "No order has been found")
                 }
             }
+
+        Log.d(TAG, "Return liveOrders")
 
         return liveOrders
     }

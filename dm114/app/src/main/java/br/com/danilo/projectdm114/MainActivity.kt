@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 import br.com.danilo.projectdm114.messaging.ORDER_DETAIL_MESSAGING_KEY
 import br.com.danilo.projectdm114.order.OrderDetailInfoFragmentDirections
+import br.com.danilo.projectdm114.order.OrderListFragmentDirections
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.FirebaseApp
@@ -87,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.nav_order_detail_list -> {
-                //TODO: implement
+                this.findNavController(R.id.nav_host_fragment).navigate(OrderListFragmentDirections.actionShowOrderList())
                 return true
             }
 
