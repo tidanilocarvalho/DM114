@@ -4,6 +4,10 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.danilo.projectdm114.persistence.Order
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 @BindingAdapter("ordersList")
 fun bindProductsList(recyclerView: RecyclerView, orders: List<Order>?) {
@@ -16,6 +20,6 @@ fun bindProductsList(recyclerView: RecyclerView, orders: List<Order>?) {
 @BindingAdapter("orderDate")
 fun bindProductPrice(txtOrderDate: TextView, orderDate: Long?) {
     orderDate?.let {
-        txtOrderDate.text = "2020/01/01 01:01:01"
+        txtOrderDate.text = SimpleDateFormat.getInstance().format(orderDate);
     }
 }
