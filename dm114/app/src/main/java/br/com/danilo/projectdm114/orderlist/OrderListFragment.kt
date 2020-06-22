@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import br.com.danilo.projectdm114.databinding.FragmentOrdersListBinding
 import br.com.danilo.projectdm114.orderlist.OrderListFragmentDirections
+import br.com.danilo.projectdm114.productdetail.ProductDetailFragmentDirections
 
 private const val TAG = "OrderListFragment"
 
@@ -38,9 +39,7 @@ class OrderListFragment : Fragment() {
                 Log.i(TAG, "Order selected: ${it.orderId}")
                 this.findNavController()
                     .navigate(
-                        OrderListFragmentDirections.actionShowOrderDetailInfo(
-                            it.orderId
-                        )
+                        ProductDetailFragmentDirections.actionShowProductDetail(it.orderId)
                     )
             })
 

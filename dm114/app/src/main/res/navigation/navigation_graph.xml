@@ -16,6 +16,16 @@
     </action>
 
     <action
+        android:id="@+id/action_showProductDetail"
+        app:launchSingleTop="true"
+        app:destination="@id/fragmentProductDetail" >
+        <argument
+            app:nullable="true"
+            android:name="orderId"
+            app:argType="string"/>
+    </action>
+
+    <action
         android:id="@+id/action_showOrderList"
         app:launchSingleTop="true"
         app:destination="@id/fragmentOrderList" >
@@ -33,5 +43,12 @@
         android:name="br.com.danilo.projectdm114.orderlist.OrderListFragment"
         android:label="fragment_order_list"
         tools:layout="@layout/fragment_orders_list" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentProductDetail"
+        android:name="br.com.danilo.projectdm114.productdetail.ProductDetailFragment"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail" >
     </fragment>
 </navigation>
