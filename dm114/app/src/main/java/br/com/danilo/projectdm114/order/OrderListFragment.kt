@@ -39,7 +39,7 @@ class OrderListFragment : Fragment() {
         })
 
         binding.ordersRefresh.setOnRefreshListener {
-            Log.i(TAG, "Refreshing products list")
+            Log.i(TAG, "Refreshing orders list")
             binding.ordersRefresh.isRefreshing = false
         }
 

@@ -17,10 +17,10 @@
         <TextView
             android:id="@+id/txtOrderListItemCode"
             android:layout_width="0dp"
-            android:layout_height="46dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_weight="0.15"
+            android:layout_weight="0.20"
             android:paddingStart="8dip"
             android:paddingTop="12dip"
             android:paddingBottom="12dip"
@@ -35,10 +35,10 @@
         <TextView
             android:id="@+id/txtOrderListItemStatus"
             android:layout_width="0dp"
-            android:layout_height="46dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_weight="0.45"
+            android:layout_weight="0.40"
             android:paddingStart="8dip"
             android:paddingTop="12dip"
             android:paddingBottom="12dip"
@@ -53,7 +53,7 @@
         <TextView
             android:id="@+id/txtOrderListItemDate"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_weight="0.30"
             android:minWidth="70dp"
@@ -61,11 +61,11 @@
             android:paddingTop="12dip"
             android:paddingEnd="8dip"
             android:paddingBottom="12dip"
-            app:orderDate="@{order.date}"
             android:textAlignment="center"
             android:textSize="14sp"
             android:textStyle="normal"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:orderDate="@{order.date}" />
 
     </LinearLayout>
 </layout>
