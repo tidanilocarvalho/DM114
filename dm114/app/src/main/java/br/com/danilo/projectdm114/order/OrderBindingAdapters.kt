@@ -1,12 +1,11 @@
 package br.com.danilo.projectdm114.order
 
+import android.text.format.DateFormat
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.danilo.projectdm114.persistence.Order
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 @BindingAdapter("ordersList")
@@ -20,6 +19,6 @@ fun bindProductsList(recyclerView: RecyclerView, orders: List<Order>?) {
 @BindingAdapter("orderDate")
 fun bindProductPrice(txtOrderDate: TextView, orderDate: Long?) {
     orderDate?.let {
-        txtOrderDate.text = SimpleDateFormat.getInstance().format(orderDate);
+        txtOrderDate.text = DateFormat.format("yyyy-MM-dd hh:mm:ss", Date(orderDate));
     }
 }
