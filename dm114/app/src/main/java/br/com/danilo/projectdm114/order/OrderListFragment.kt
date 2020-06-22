@@ -38,6 +38,11 @@ class OrderListFragment : Fragment() {
                 .navigate(OrderListFragmentDirections.actionShowOrderDetailInfo(it.orderId))
         })
 
+        binding.ordersRefresh.setOnRefreshListener {
+            Log.i(TAG, "Refreshing products list")
+            binding.ordersRefresh.isRefreshing = false
+        }
+
         return binding.root
     }
 
