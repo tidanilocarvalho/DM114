@@ -1,4 +1,4 @@
-package br.com.danilo.projectdm114.order
+package br.com.danilo.projectdm114.orderlist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,16 +9,20 @@ import br.com.danilo.projectdm114.databinding.ItemOrderBinding
 import br.com.danilo.projectdm114.persistence.Order
 
 class OrderAdapter(val onOrderClickListener: OrderClickListener) :
-    ListAdapter<Order, OrderAdapter.OrderViewHolder>(OrderDiff) {
+    ListAdapter<Order, OrderAdapter.OrderViewHolder>(
+        OrderDiff
+    ) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): OrderAdapter.OrderViewHolder {
-        return OrderViewHolder(ItemOrderBinding.inflate(LayoutInflater.from(parent.context)))
+    ): OrderViewHolder {
+        return OrderViewHolder(
+            ItemOrderBinding.inflate(LayoutInflater.from(parent.context))
+        )
     }
 
-    override fun onBindViewHolder(holder: OrderAdapter.OrderViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
         val order = getItem(position)
         holder.bind(order)
 

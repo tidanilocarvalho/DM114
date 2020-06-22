@@ -23,14 +23,14 @@
 
     <fragment
         android:id="@+id/fragmentOrderDetailInfo"
-        android:name="br.com.danilo.projectdm114.order.OrderDetailInfoFragment"
+        android:name="br.com.danilo.projectdm114.orderfcm.OrderDetailInfoFragment"
         android:label="fragment_order_detail_list"
         tools:layout="@layout/fragment_order_detail_info" >
     </fragment>
 
     <fragment
         android:id="@+id/fragmentOrderList"
-        android:name="br.com.danilo.projectdm114.order.OrderListFragment"
+        android:name="br.com.danilo.projectdm114.orderlist.OrderListFragment"
         android:label="fragment_order_list"
         tools:layout="@layout/fragment_orders_list" >
     </fragment>

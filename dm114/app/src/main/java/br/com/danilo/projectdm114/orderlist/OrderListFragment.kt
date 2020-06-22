@@ -1,4 +1,4 @@
-package br.com.danilo.projectdm114.order
+package br.com.danilo.projectdm114.orderlist
 
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import br.com.danilo.projectdm114.databinding.FragmentOrdersListBinding
+import br.com.danilo.projectdm114.orderlist.OrderListFragmentDirections
 
 private const val TAG = "OrderListFragment"
 
@@ -32,11 +33,16 @@ class OrderListFragment : Fragment() {
         val itemDecor = DividerItemDecoration(getContext(), VERTICAL)
         binding.rcvOrders.addItemDecoration(itemDecor)
 
-        binding.rcvOrders.adapter = OrderAdapter(OrderAdapter.OrderClickListener {
-            Log.i(TAG, "Order selected: ${it.orderId}")
-            this.findNavController()
-                .navigate(OrderListFragmentDirections.actionShowOrderDetailInfo(it.orderId))
-        })
+        binding.rcvOrders.adapter =
+            OrderAdapter(OrderAdapter.OrderClickListener {
+                Log.i(TAG, "Order selected: ${it.orderId}")
+                this.findNavController()
+                    .navigate(
+                        OrderListFragmentDirections.actionShowOrderDetailInfo(
+                            it.orderId
+                        )
+                    )
+            })
 
         binding.ordersRefresh.setOnRefreshListener {
             Log.i(TAG, "Refreshing orders list")

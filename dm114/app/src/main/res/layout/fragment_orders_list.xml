@@ -5,7 +5,7 @@
     <data>
         <variable
             name="orderListViewModel"
-            type="br.com.danilo.projectdm114.order.OrderListViewModel" />
+            type="br.com.danilo.projectdm114.orderlist.OrderListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

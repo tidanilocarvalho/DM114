@@ -1,4 +1,4 @@
-package br.com.danilo.projectdm114.order
+package br.com.danilo.projectdm114.orderfcm
 
 data class OrderDetail (
     var username: String,

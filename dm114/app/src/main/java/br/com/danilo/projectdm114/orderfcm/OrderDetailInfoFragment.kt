@@ -1,4 +1,4 @@
-package br.com.danilo.projectdm114.order
+package br.com.danilo.projectdm114.orderfcm
 
 import android.os.Bundle
 import android.util.Log
@@ -8,12 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import br.com.danilo.projectdm114.databinding.FragmentOrderDetailInfoBinding
-import br.com.danilo.projectdm114.persistence.Order
-import br.com.danilo.projectdm114.persistence.OrderRepository
 import com.google.firebase.iid.FirebaseInstanceId
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
-import java.text.SimpleDateFormat
 
 private const val TAG = "OrderDetailInfoFragment"
 
@@ -44,7 +41,8 @@ class OrderDetailInfoFragment : Fragment() {
             if (this.arguments!!.containsKey("orderDetailInfo")) {
                 val moshi = Moshi.Builder().build()
                 val jsonAdapter: JsonAdapter<OrderDetail> =
-                    moshi.adapter<OrderDetail>(OrderDetail::class.java)
+                    moshi.adapter<OrderDetail>(
+                        OrderDetail::class.java)
                 jsonAdapter.fromJson(this.arguments!!.getString("orderDetailInfo")!!).let {
                     orderDetailInfoViewModel.orderDetail.value = it
                 }

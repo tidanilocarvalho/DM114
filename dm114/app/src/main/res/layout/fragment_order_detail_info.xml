@@ -4,7 +4,7 @@
     <data>
         <variable
             name="orderDetailInfoViewModel"
-            type="br.com.danilo.projectdm114.order.OrderDetailInfoViewModel" />
+            type="br.com.danilo.projectdm114.orderfcm.OrderDetailInfoViewModel" />
     </data>
 
     <ScrollView

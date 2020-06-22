@@ -1,11 +1,11 @@
-package br.com.danilo.projectdm114.order
+package br.com.danilo.projectdm114.orderlist
 
 import android.text.format.DateFormat
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import br.com.danilo.projectdm114.orderlist.OrderAdapter
 import br.com.danilo.projectdm114.persistence.Order
-import java.text.SimpleDateFormat
 import java.util.*
 
 @BindingAdapter("ordersList")

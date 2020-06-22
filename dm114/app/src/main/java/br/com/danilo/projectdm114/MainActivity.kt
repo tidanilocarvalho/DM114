@@ -11,8 +11,8 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.navigation.findNavController
 import br.com.danilo.projectdm114.messaging.ORDER_DETAIL_MESSAGING_KEY
-import br.com.danilo.projectdm114.order.OrderDetailInfoFragmentDirections
-import br.com.danilo.projectdm114.order.OrderListFragmentDirections
+import br.com.danilo.projectdm114.orderfcm.OrderDetailInfoFragmentDirections
+import br.com.danilo.projectdm114.orderlist.OrderListFragmentDirections
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.FirebaseApp
