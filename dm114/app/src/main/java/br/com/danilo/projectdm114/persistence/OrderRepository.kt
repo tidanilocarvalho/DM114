@@ -40,8 +40,8 @@ object OrderRepository {
         return document.id
     }
 
-    fun deleteOrder(orderId: String) {
-        val document = firebaseFirestore.collection(COLLECTION).document(orderId)
+    fun deleteOrder(id: String) {
+        val document = firebaseFirestore.collection(COLLECTION).document(id)
         document.delete()
     }
 
@@ -61,7 +61,7 @@ object OrderRepository {
                     val orders = ArrayList<Order>()
                     querySnapshot.forEach {
                         val order = it.toObject<Order>()
-                        //order.id = it.id
+                        order.id = it.id
                         orders.add(order)
                     }
                     liveOrders.postValue(orders)

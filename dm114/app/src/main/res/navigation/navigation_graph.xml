@@ -21,7 +21,19 @@
         app:destination="@id/fragmentProductDetail" >
         <argument
             app:nullable="true"
+            android:name="id"
+            app:argType="string"/>
+        <argument
+            app:nullable="true"
             android:name="orderId"
+            app:argType="string"/>
+        <argument
+            app:nullable="true"
+            android:name="orderStatus"
+            app:argType="string"/>
+        <argument
+            app:nullable="true"
+            android:name="productCode"
             app:argType="string"/>
     </action>
 

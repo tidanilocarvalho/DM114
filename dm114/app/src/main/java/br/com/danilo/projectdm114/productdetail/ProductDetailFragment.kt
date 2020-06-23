@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import br.com.danilo.projectdm114.R
 import br.com.danilo.projectdm114.databinding.FragmentProductDetailBinding
+import br.com.danilo.projectdm114.network.SalesApi
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 
@@ -31,10 +32,20 @@ class ProductDetailFragment : Fragment() {
         binding.productDetailViewModel = productDetailViewModel
 
         if (this.arguments != null) {
-            if (this.arguments!!.containsKey("orderId")) {
-                val orderId = this.arguments!!.get("orderId").toString()
+            if (this.arguments!!.containsKey("id")) {
+                val id = this.arguments!!.get("id").toString()
 
-                productDetailViewModel.productDetail.value = ProductDetail(orderId = orderId, orderDate = "a", status = "a")
+                val orderId = this.arguments!!.get("orderId").toString()
+                val orderStatus = this.arguments!!.get("orderStatus").toString()
+                val productCode = this.arguments!!.get("productCode").toString()
+
+                //SalesApi.retrofitService.getProductByCode(productCode)
+
+                productDetailViewModel.productDetail.value = ProductDetail(
+                    id = id,
+                    orderId = orderId,
+                    orderDate = "NOT_SENT_YET",
+                    status = orderStatus)
             }
         }
 

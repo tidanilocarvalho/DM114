@@ -10,8 +10,8 @@ class ProductDetailViewModel : ViewModel() {
     val productDetail = MutableLiveData<ProductDetail>()
 
     fun deleteOrder() {
-        if (productDetail.value?.orderId != null) {
-            OrderRepository.deleteOrder(productDetail.value!!.orderId)
+        if (productDetail.value?.id != null) {
+            OrderRepository.deleteOrder(productDetail.value!!.id)
             productDetail.value = null;
         }
     }

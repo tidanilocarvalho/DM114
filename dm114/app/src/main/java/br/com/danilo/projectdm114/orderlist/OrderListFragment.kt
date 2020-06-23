@@ -37,7 +37,11 @@ class OrderListFragment : Fragment() {
                 Log.i(TAG, "Order selected: ${it.orderId}")
                 this.findNavController()
                     .navigate(
-                        ProductDetailFragmentDirections.actionShowProductDetail(it.orderId)
+                        ProductDetailFragmentDirections.actionShowProductDetail(
+                            it.id,
+                            it.orderId,
+                            it.status,
+                            it.productCode)
                     )
             })
 
