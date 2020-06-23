@@ -1,21 +1,19 @@
 package br.com.danilo.projectdm114.productdetail
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import br.com.danilo.projectdm114.databinding.FragmentOrderDetailInfoBinding
+import androidx.navigation.fragment.findNavController
+import br.com.danilo.projectdm114.R
 import br.com.danilo.projectdm114.databinding.FragmentProductDetailBinding
-import com.google.firebase.iid.FirebaseInstanceId
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
 
 private const val TAG = "ProductDetailFragment"
 
 class ProductDetailFragment : Fragment() {
+
+    private lateinit var binding: FragmentProductDetailBinding
+
     private val productDetailViewModel: ProductDetailViewModel by lazy {
         ViewModelProviders.of(this).get(ProductDetailViewModel::class.java)
     }
@@ -24,7 +22,7 @@ class ProductDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentProductDetailBinding.inflate(inflater);
+        binding = FragmentProductDetailBinding.inflate(inflater);
 
         binding.setLifecycleOwner(this)
 
@@ -32,9 +30,32 @@ class ProductDetailFragment : Fragment() {
 
         if (this.arguments != null) {
             if (this.arguments!!.containsKey("orderId")) {
-                productDetailViewModel.productDetail.value = ProductDetail(orderId = "a", orderDate = "a", status = "a")
+                val orderId = this.arguments!!.get("orderId").toString()
+
+                productDetailViewModel.productDetail.value = ProductDetail(orderId = orderId, orderDate = "a", status = "a")
             }
         }
+
+        setHasOptionsMenu(true)
+
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        inflater.inflate(R.menu.signout_menu, menu)
+        inflater.inflate(R.menu.product_detail_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.delete_order -> {
+                binding.productDetailViewModel?.deleteOrder()
+                findNavController().popBackStack()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

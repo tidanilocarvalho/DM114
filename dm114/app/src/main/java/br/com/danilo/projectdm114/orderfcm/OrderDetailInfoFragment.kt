@@ -2,11 +2,10 @@ package br.com.danilo.projectdm114.orderfcm
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import br.com.danilo.projectdm114.R
 import br.com.danilo.projectdm114.databinding.FragmentOrderDetailInfoBinding
 import com.google.firebase.iid.FirebaseInstanceId
 import com.squareup.moshi.JsonAdapter
@@ -48,6 +47,16 @@ class OrderDetailInfoFragment : Fragment() {
                 }
             }
         }
+
+        setHasOptionsMenu(true)
+
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        inflater.inflate(R.menu.signout_menu, menu)
+        inflater.inflate(R.menu.order_list_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 }
