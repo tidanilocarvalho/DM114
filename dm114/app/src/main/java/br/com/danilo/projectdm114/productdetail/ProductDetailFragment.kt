@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import br.com.danilo.projectdm114.R
 import br.com.danilo.projectdm114.databinding.FragmentProductDetailBinding
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.ktx.remoteConfig
 
 private const val TAG = "ProductDetailFragment"
 
@@ -36,7 +38,8 @@ class ProductDetailFragment : Fragment() {
             }
         }
 
-        setHasOptionsMenu(true)
+        val remoteConfig = Firebase.remoteConfig
+        setHasOptionsMenu(remoteConfig.getBoolean("delete_detail_view"))
 
         return binding.root
     }

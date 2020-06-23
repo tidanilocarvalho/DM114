@@ -18,6 +18,9 @@ import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 
 private const val TAG = "MainActivity"
 
@@ -46,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         Log.i(TAG, "User logged $name with email account $email")
 
         setContentView(R.layout.activity_main)
+        setFirebaseRemoteConfig()
 
         if (this.intent.hasExtra(ORDER_DETAIL_MESSAGING_KEY)) {
             showOrderDetailInfo(intent.getStringExtra(ORDER_DETAIL_MESSAGING_KEY))
@@ -103,6 +107,26 @@ class MainActivity : AppCompatActivity() {
             showOrderDetailInfo(intent.getStringExtra(ORDER_DETAIL_MESSAGING_KEY)!!)
         }
         super.onNewIntent(intent)
+    }
+
+    fun setFirebaseRemoteConfig() {
+        val remoteConfig = Firebase.remoteConfig
+        val configSettings = remoteConfigSettings {
+            minimumFetchIntervalInSeconds = 60
+        }
+        remoteConfig.setConfigSettingsAsync(configSettings)
+        val defaultConfigMap: MutableMap<String, Any> = HashMap()
+        defaultConfigMap["delete_detail_view"] = false
+        remoteConfig.setDefaultsAsync(defaultConfigMap)
+        remoteConfig.fetchAndActivate()
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val updated = task.result
+                    Log.d(TAG, "Remote config updated: $updated")
+                } else {
+                    Log.d(TAG, "Failed to load remote config")
+                }
+            }
     }
 
     private fun showOrderDetailInfo(orderDetailInfo: String) {
