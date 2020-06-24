@@ -25,14 +25,6 @@
             app:argType="string"/>
         <argument
             app:nullable="true"
-            android:name="orderId"
-            app:argType="string"/>
-        <argument
-            app:nullable="true"
-            android:name="orderStatus"
-            app:argType="string"/>
-        <argument
-            app:nullable="true"
             android:name="productCode"
             app:argType="string"/>
     </action>

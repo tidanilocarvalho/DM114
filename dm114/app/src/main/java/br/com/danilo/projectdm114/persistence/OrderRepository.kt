@@ -11,6 +11,7 @@ private const val TAG = "OrderRepository"
 
 private const val COLLECTION = "orders"
 
+private const val FIELD_ID = "id"
 private const val FIELD_USER_ID = "userId"
 private const val FIELD_STATUS = "status"
 private const val FIELD_ORDER_ID = "orderId"
@@ -75,28 +76,28 @@ object OrderRepository {
         return liveOrders
     }
 
-    fun getOrderByOrderId(orderId: String): MutableLiveData<Order> {
+    fun getOrderById(id: String): MutableLiveData<Order> {
         val liveOrder: MutableLiveData<Order> = MutableLiveData()
 
         firebaseFirestore.collection(COLLECTION)
-            .whereEqualTo(FIELD_ORDER_ID, orderId)
-            .whereEqualTo(FIELD_USER_ID, firebaseAuth.uid)
+            .document(id)
             .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 if (firebaseFirestoreException != null) {
                     Log.w(TAG, "Listen failed.", firebaseFirestoreException)
                     return@addSnapshotListener
                 }
 
-                if (querySnapshot != null && !querySnapshot.isEmpty) {
-                    val orders = ArrayList<Order>()
-                    querySnapshot.forEach {
-                        val order = it.toObject<Order>()
-                        order.id = it.id
-                        orders.add(order)
+                if (querySnapshot != null ) {
+                    val order = querySnapshot.toObject<Order>()
+
+                    if (order != null) {
+                        if (order.userId == firebaseAuth.uid) {
+                            order.id = querySnapshot.id
+                            liveOrder.postValue(order)
+                        }
                     }
-                    liveOrder.postValue(orders[0])
                 } else {
-                    Log.d(TAG, "No order has been found")
+                    Log.d(TAG, "No product has been found")
                 }
             }
 
