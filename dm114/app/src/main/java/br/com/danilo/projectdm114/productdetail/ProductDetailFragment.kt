@@ -1,6 +1,7 @@
 package br.com.danilo.projectdm114.productdetail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -42,7 +43,10 @@ class ProductDetailFragment : Fragment() {
 
                 productDetailViewModel.order = order
 
-                //SalesApi.retrofitService.getProductByCode(productCode)
+                val salesProductViewModelFactory = SalesProductViewModelFactory(productCode)
+
+                binding.salesProductViewModel = ViewModelProviders.of(
+                    this, salesProductViewModelFactory).get(SalesProductViewModel::class.java)
             }
         }
 
