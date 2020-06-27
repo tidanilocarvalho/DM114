@@ -13,6 +13,7 @@ import br.com.danilo.projectdm114.MainActivity
 import br.com.danilo.projectdm114.orderfcm.OrderDetail
 import br.com.danilo.projectdm114.persistence.Order
 import br.com.danilo.projectdm114.persistence.OrderRepository
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.squareup.moshi.JsonAdapter
@@ -34,18 +35,27 @@ class FCMOrderDetailService: FirebaseMessagingService() {
         remoteMessage.data.isNotEmpty().let {
             Log.d(TAG, "Payload: " + remoteMessage.data)
 
+            val loggedEmail = FirebaseAuth.getInstance().currentUser?.email
+
             if (remoteMessage.data.containsKey(ORDER_DETAIL_MESSAGING_KEY)) {
                 val moshi = Moshi.Builder().build()
                 val jsonAdapter: JsonAdapter<OrderDetail> = moshi.adapter<OrderDetail>(
                     OrderDetail::class.java)
                 var orderDetail = jsonAdapter.fromJson(remoteMessage.data.get(ORDER_DETAIL_MESSAGING_KEY)!!)
-                val order = Order(
-                    status = orderDetail?.status,
-                    orderId = orderDetail?.orderId,
-                    productCode = orderDetail?.productCode,
-                    date = System.currentTimeMillis())
-                OrderRepository.saveOrder(order)
-                sendOrderDetailNotification(remoteMessage.data.get(ORDER_DETAIL_MESSAGING_KEY)!!)
+
+                if (orderDetail?.username.equals(loggedEmail)!!) {
+                    Log.d(TAG, "Message accepted")
+
+                    val order = Order(
+                        status = orderDetail?.status,
+                        orderId = orderDetail?.orderId,
+                        productCode = orderDetail?.productCode,
+                        date = System.currentTimeMillis())
+                    OrderRepository.saveOrder(order)
+                    sendOrderDetailNotification(remoteMessage.data.get(ORDER_DETAIL_MESSAGING_KEY)!!)
+                } else {
+                    Log.d(TAG, "Message not accepted")
+                }
             }
         }
     }
